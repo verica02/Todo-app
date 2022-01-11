@@ -1,17 +1,17 @@
 import { MongoClient } from 'mongodb'
 
-const MONGODB_URI = process.env.MONGODB_URI
-const MONGODB_DB = process.env.MONGODB_DB
+const NEXT_PUBLIC_MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI
+const NEXT_PUBLIC_MONGODB_DB = process.env.NEXT_PUBLIC_MONGODB_DB
 
-if (!MONGODB_URI) {
+if (!NEXT_PUBLIC_MONGODB_URI) {
   throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
+    'Please define the NEXT_PUBLIC_MONGODB_URI environment variable inside .env.local'
   )
 }
 
-if (!MONGODB_DB) {
+if (!NEXT_PUBLIC_MONGODB_DB) {
   throw new Error(
-    'Please define the MONGODB_DB environment variable inside .env.local'
+    'Please define the NEXT_PUBLIC_MONGODB_DB environment variable inside .env.local'
   )
 }
 
@@ -37,10 +37,10 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     }
 
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
+    cached.promise = MongoClient.connect(NEXT_PUBLIC_MONGODB_URI, opts).then((client) => {
       return {
         client,
-        db: client.db(MONGODB_DB),
+        db: client.db(NEXT_PUBLIC_MONGODB_DB),
       }
     })
   }
